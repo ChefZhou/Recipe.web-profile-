@@ -7,10 +7,11 @@
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist"
   },
-  "author": "Jonas Schedtmann",
+  "author": "Denny Zhou",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.0.0-beta.1",
+    "@parcel/transformer-sass": "^2.12.0",
+    "parcel": "^2.12.0",
     "sass": "^1.80.6"
   },
   "dependencies": {
