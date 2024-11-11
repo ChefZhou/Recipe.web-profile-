@@ -35,7 +35,12 @@ class AddRecipeView extends View {
       e.preventDefault();
       const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
-      handler(data);
+      try {
+        handler(data);
+        this.reset();
+      } catch (error) {
+        console.error('Error uploading recipe:', error);
+      }
     });
   }
 

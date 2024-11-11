@@ -17,6 +17,7 @@
     "core-js": "^3.39.0",
     "fractional": "^1.0.0",
     "img": "^3.0.3",
+    "package": "^1.0.1",
     "regenerator-runtime": "^0.13.11"
   }
 }
