@@ -16,18 +16,18 @@ class AddRecipeView extends View {
     this._addHandlerHideWindow();
   }
 
-  toggleWindow() {
-    this._overlay.classList.toggle('hidden');
-    this._window.classList.toggle('hidden');
-  }
-
   _addHandlerShowWindow() {
-    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
+    this._btnOpen.addEventListener('click', this._toggleWindow.bind(this));
   }
 
   _addHandlerHideWindow() {
-    this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
-    this._overlay.addEventListener('click', this.toggleWindow.bind(this));
+    this._btnClose.addEventListener('click', this._toggleWindow.bind(this));
+    this._overlay.addEventListener('click', this._toggleWindow.bind(this));
+  }
+
+  _toggleWindow() {
+    this._overlay.classList.toggle('hidden');
+    this._window.classList.toggle('hidden');
   }
 
   addHandlerUpload(handler) {
@@ -35,13 +35,20 @@ class AddRecipeView extends View {
       e.preventDefault();
       const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
-      try {
-        handler(data);
-        this.reset();
-      } catch (error) {
-        console.error('Error uploading recipe:', error);
-      }
+      handler(data);
     });
+  }
+  renderMessage(message = this._message) {
+    const markup = `<div class="message">
+      <div>
+        <svg>
+          <use href="${icons}#icon-smile"></use>
+        </svg>
+      </div>
+      <p>${message}</p>
+    </div>`;
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   _generateMarkup() {}
